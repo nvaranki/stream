@@ -27,6 +27,6 @@ public interface Accumulator<Atom> extends Receiver<Atom> {
     /**
      * @return true if Receiver stands in a good shape and false otherwise.
      */
-    boolean isValid();
+    boolean valid();
 
 }
