@@ -11,30 +11,25 @@ import java.util.*;
  */
 public final class NullTerminator<T> implements Iterable<T>
 {
-    private final Iterable<T> source;
+    private final Iterator<T> source, factory;
 
-    public NullTerminator( Iterable<T> source )
+    public NullTerminator( Iterable<T> aSource )
     {
-        this.source = source;
-    }
-
-    @Override public Iterator<T> iterator()
-    {
-        return new Iterator<T>()
+        source = aSource != null ? aSource.iterator() : Collections.<T>emptyList().iterator();
+        factory = new Iterator<T>()
         {
-            private final Iterator<T> iterator = source.iterator();
             private boolean send_null = true;
 
             @Override public boolean hasNext()
             {
-                return iterator.hasNext() || send_null;
+                return source.hasNext() || send_null;
             }
 
             @Override public T next()
             {
-                if( iterator.hasNext() )
+                if( source.hasNext() )
                 {
-                    return iterator.next();
+                    return source.next();
                 }
                 else if( send_null )
                 {
@@ -47,10 +42,15 @@ public final class NullTerminator<T> implements Iterable<T>
 
             @Override public void remove()
             {
-                iterator.remove();
+                source.remove();
             }
 
         };
+    }
+
+    @Override public Iterator<T> iterator()
+    {
+        return factory;
     }
 
 }
