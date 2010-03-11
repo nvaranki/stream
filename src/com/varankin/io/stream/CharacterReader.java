@@ -9,66 +9,21 @@ import java.util.*;
  *
  * @author &copy; 2009 Nikolai Varankine
  */
-public class CharacterReader implements Iterable<Character>
+public class CharacterReader extends AtomicReader<Character>
 {
-    private static final int EOF = -1;
-
-    private final Reader source;
-    private int cached, requested;
-    private boolean ended;
-
+    public static Factory<Character> FACTORY = new Factory<Character>() 
+    {
+        @Override public Character newInstance( char aAtom )
+        {
+            return new Character( aAtom );
+        }
+    };
+    
+    /**
+     * @param aInput provider of characters.
+     */
     public CharacterReader( Reader aInput )
     {
-        source = aInput;
-        cached = requested = EOF;
-        ended = aInput == null;
+        super( aInput, FACTORY );
     }
-
-    @Override
-    public Iterator<Character> iterator()
-    {
-        cached = requested;
-        return new Iterator<Character>()
-        {
-            @Override
-            public boolean hasNext()
-            {
-                if( cached == EOF && !ended )
-                    try
-                    {
-                        cached = source.read();
-                        ended = cached == EOF;
-                    }
-                    catch( IOException ex )
-                    {
-                        throw new RuntimeException( ex );
-                    }
-                return cached != EOF;
-            }
-
-            @Override
-            public Character next()
-            {
-                if( hasNext() )
-                {
-                    requested = cached;
-                    cached = EOF;
-                    return new Character( (char)requested );
-                }
-                else
-                    throw new NoSuchElementException();
-            }
-
-            @Override
-            public void remove()
-            {
-                if( requested != EOF )
-                    requested = EOF;
-                else
-                    throw new IllegalStateException();
-            }
-
-        };
-    }
-
 }
