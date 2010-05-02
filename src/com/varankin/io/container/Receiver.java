@@ -3,9 +3,9 @@ package com.varankin.io.container;
 /**
  * Mutable object to accept another objects of specified type.
  *
- * @param Atom elementary object described by syntax.
+ * @param <Atom> elementary object described by syntax.
  *
- * @author &copy; 2009 Nikolai Varankine
+ * @author &copy; 2010 Nikolai Varankine
  */
 public interface Receiver<Atom> {
 
