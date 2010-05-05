@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.varankin.io.container;
 
 /**
@@ -14,21 +9,24 @@ package com.varankin.io.container;
  */
 public interface Automaton<Atom> extends Receiver<Atom>
 {
+    /** Identity value to denote no match between objects. */
     int IRRELEVANT = 0;
+    /** Identity value to denote exact match between objects. */
     int IDENTICAL = 1;
 
     /**
      * <p>Returns identity level of received elementary objects with expectation:
      * <ul type=circle>
-     * <li>0 - objects do not meet expectation.</li>
-     * <li>1 - objects meet expectation exactly.</li>
-     * <li>any value > 1 - objects meet expectation with some sense of abstraction;
-     *              the bigger value the less identity observed.</li>
+     * <li>{@linkplain #IRRELEVANT IRRELEVANT} - objects do not meet expectation.</li>
+     * <li>{@linkplain #IDENTICAL IDENTICAL} - objects meet expectation exactly.</li>
+     * <li>any value > {@linkplain #IDENTICAL IDENTICAL} - objects meet expectation with some sense of abstraction;
+     *              the bigger the value the less identity is observed. Same values returned on different
+     *              instances of Automaton does not necessarily mean equal grade of identity.</li>
      * </ul></p>
      * <p>Return value is not guaranteed to be true until {@link #add(java.lang.Object)} returns false.</p>
      *
      *
-     * @return level of identity as non-negative number.
+     * @return level of identity as nonnegative integer.
      */
     int identity();
 }
