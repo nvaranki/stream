@@ -1,7 +1,6 @@
 package com.varankin.io.stream;
 
 import com.varankin.io.container.*;
-import com.varankin.io.stream.*;
 import java.util.*;
 
 /**
