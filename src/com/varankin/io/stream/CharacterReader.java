@@ -1,7 +1,6 @@
 package com.varankin.io.stream;
 
 import java.io.*;
-import java.util.*;
 
 /**
  * {@link java.lang.Iterable} wrapper over character 
