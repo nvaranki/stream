@@ -10,12 +10,13 @@ import java.util.*;
  * Parser retracts unused Part's from completed Component to reuse them
  * for next Component instance.
  *
- * @param Component object being constructed.
  * @param Part elementary object used to build component.
+ * @param Component object being constructed.
  *
- * @author &copy; 2010 Nikolai Varankine
+ * @author &copy; 2011 Nikolai Varankine
  */
-public final class AccuChopper<Component extends Accumulator<Part>, Part> implements Iterable<Component>
+public final class AccuChopper<Part, Component extends Accumulator<Part>>
+        implements Iterable<Component>
 {
     private final Iterator<Part> source;
     private final Iterator<Component> factory;
