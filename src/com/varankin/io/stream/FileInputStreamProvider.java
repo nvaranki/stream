@@ -9,7 +9,7 @@ import java.util.Objects;
  *
  * @author &copy; 2012 Николай Варанкин
  */
-public class FileInputStreamProvider implements Provider<InputStream>
+public class FileInputStreamProvider implements Provider<InputStream>, Serializable
 {
     private final File file;
 
