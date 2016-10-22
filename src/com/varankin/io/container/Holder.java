@@ -1,17 +1,17 @@
 package com.varankin.io.container;
 
 /**
- * Поставщик объектов.
+ * Поставщик хранимого объекта.
  * 
  * @param <T> класс объектов.
  *
  * @author &copy; 2016 Николай Варанкин
  */
 @FunctionalInterface
-public interface Provider<T> 
+public interface Holder<T>
 {
     /**
-     * @return вновь созданный объект.
+     * @return ранее созданный объект.
      */
-    T newInstance();
+    T getInstance();
 }
