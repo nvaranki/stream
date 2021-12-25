@@ -1,4 +1,4 @@
-package com.varankin.util;
+package com.varankin.io.util;
 
 import static java.util.ResourceBundle.Control.*;
 import java.util.ResourceBundle.Control;
